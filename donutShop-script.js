@@ -1,130 +1,151 @@
-// This script will imput values into a table to represent a model of the performance of a chain of donut shops
-
-//create random values for the store
-var DonutStore = function(locationName, options) {
-  this.locationName = locationName;
-  if (!(options.minCustomers && options.maxCustomers && options.averagePerCustomer)) {
-    throw "Donut Shops need both a min customers, max customers, and average per customer";
-  }
-
-  this.minCustomers = options.minCustomers;
-  this.maxCustomers = options.maxCustomers;
-  this.averagePerCustomer = options.averagePerCustomer;
-  this.opens = options.opens || 700;
-  this.closes = options.closes || 1800;
-  this.hoursOpen = (this.closes - this.opens)/100;
+//declar the Donut Shop constructor
+var DonutShop = function (minCustomers, maxCustomers, avgDonuts, shopName) {
+  this.minCustomers = minCustomers;
+  this.maxCustomers = maxCustomers;
+  this.avgDonuts = avgDonuts;
+  this.shopName = shopName;
+  this.open = 700;
+  this.close = 1800;
+  this.hoursOpen = (this.close - this.open)/100;
+  this.eachHour = [];
+  this.totalDonuts = 0;
 };
 
-DonutStore.prototype.generateRandom = function() {
-  return Math.floor(Math.random() * (this.maxCustomers - this.minCustomers) + this.minCustomers);
+//This part creates a random number in the range of customers the shops get
+DonutShop.prototype.customers = function() {
+  var randomNumber = Math.floor(Math.random() * (this.maxCustomers - this.minCustomers + 1)) + this.minCustomers;
+  // console.log('The random number for ' + this.shopName + ' is ' + randomNumber);
+  return randomNumber;
 };
 
-DonutStore.prototype.donutsPerHour = function() {
-  return Math.floor(this.generateRandom() * this.averagePerCustomer);
+//This part multiplies the generated number by the average donuts per customer to get a range of donuts purchased for a given hour.
+DonutShop.prototype.purchasedDonuts = function() {
+  var donutRange = Math.floor(this.customers() * this.avgDonuts);
+  // console.log('The number of donuts purchased' + this.shopName + ' is ' + donutRange);
+  return donutRange;
 };
 
-DonutStore.prototype.donutsPerDay = function() {
-  var total = 0;
+//this part makes a random number of donuts for each store, each hour open
+DonutShop.prototype.donutsEachHour = function() {
   for (var i = 0; i < this.hoursOpen; i++) {
-    total += this.donutsPerHour();
-  };
-  return total;
+    this.eachHour[i] = this.purchasedDonuts();
+  }
+  // console.log(this.eachHour + ' should be an aray');
+  return this.eachHour;
 };
 
+//this part creates a sum of the donuts and prints the total donuts per day
+DonutShop.prototype.totalPerDay = function(){
+  this.donutsEachHour();
+  for (var i = 0; i < this.eachHour.length; i++) {
+    this.totalDonuts += this.eachHour[i];
+  }
+  console.log(this.eachHour);
+  console.log('Total donuts at ' + this.shopName + ' = ' + this.totalDonuts);
+  return this.totalDonuts;
+};
 
-//writes the data to the table
-// Store.prototype.render = function() {
-//   var addEntry = document.createElement(){
+//Declaring and instantiating shops, and calling functions.
+var downtownShop = new DonutShop (8, 43, 4.50, 'Downtown');
+downtownShop.totalPerDay();
 
-//   }
-// }
+var capitolHillShop = new DonutShop (4, 37, 2.00, 'Capitol Hill');
+capitolHillShop.totalPerDay();
+
+var southLakeUnionShop = new DonutShop (9, 23, 6.33, 'South Lake Union');
+southLakeUnionShop.totalPerDay();
+
+var wedgewoodShop = new DonutShop (2, 28, 1.25, 'Wedgewood');
+wedgewoodShop.totalPerDay();
+
+var ballardShop = new DonutShop (8, 58, 3.75, 'Ballard');
+ballardShop.totalPerDay();
 
 
-
-
-// //create StoreHours constructor
-// var StoreHours = function(open, close) {
-//   this.open = open;
-//   this.close = close;
+// //**this renders the whole table
+// DonutShop.prototype.renderTable = function(){
+//   this.renderHead();
+//   this.renderBody();
+//   this.renderFoot();
 // };
 
-// StoreHours.prototype.dayHours = function() {
-//   for (var i = 0; i < 24; i++) {
-//     console.log(i + 1);
-//     return (i + 1);
-//   }
+// //**this renders the table head <thead>
+// DonutShop.prototype.renderHead = function(){
+
 // };
 
-//determines if the store is open
-// StoreHours.prototype.openBool = function () {
-//   if (dayHours > this.open && dayHours < this.close) {
-//     console.log('the bool value is true');
-//     return true;
-//   } else {
-//     console.log('the bool value is false');
-//     return false;
-//   }
+// //**this renders the body of the table
+// DonutShop.prototype.renderBody = function(){
+
+// };
+
+// //**this renders the footer of the table
+// DonutShop.prototype.renderFoot = function(){
+
 // };
 
 
+// //**call the table render function
 
+//Finds the body tag in HTML and creates a table
+var body = document.body;
+var table = document.createElement('table');
 
+//creates the header for the table
+var createTableHeader = function() {
+  table.style.width = '300px';
+  table.style.border = '5px solid black';
 
-//declars all the instances of store open-ness and store data generation
-// var downtownStoreHours = new StoreHours(7, 18);
-// var capitolHillStoreHours = new StoreHours(7, 18);
-// var southLakeUnionStoreHours = new StoreHours(7, 18);
-// var wedgewoodStoreHours = new StoreHours(7, 18);
-// var ballardStoreHours = new StoreHours(7, 18);
+  var tr = table.insertRow();
+  var td = tr.insertCell();
+  td.appendChild(document.createTextNode('Hours:'));
+  td.style.border = '2px solid black';
 
-var downtownStore = new DonutStore('downtown', {minCustomers: 8, maxCustomers: 43, averagePerCustomer: 4.50});
-console.log(downtownStore.donutsPerHour());
-console.log(downtownStore.donutsPerDay());
-
-var capitolHillStore = new DonutStore('capitol hill', {minCustomers: 4, maxCustomers: 37, averagePerCustomer: 2.00});
-console.log(capitolHillStore.donutsPerHour());
-console.log(capitolHillStore.donutsPerDay());
-
-var southLakeUnionStore = new DonutStore('south lake union', {minCustomers: 9, maxCustomers: 23, averagePerCustomer: 6.33});
-console.log(southLakeUnionStore.donutsPerHour());
-console.log(southLakeUnionStore.donutsPerDay());
-
-var wedgewoodStore = new DonutStore('wedgewood', {minCustomers: 2, maxCustomers: 28, averagePerCustomer: 1.25});
-console.log(wedgewoodStore.donutsPerHour());
-console.log(wedgewoodStore.donutsPerDay());
-
-var ballardStore = new DonutStore('ballard', {minCustomers: 8, maxCustomers: 58, averagePerCustomer: 3.75});
-console.log(ballardStore.donutsPerHour());
-console.log(ballardStore.donutsPerDay());
-
-
-//write to tableHeadings
-DonutStore.prototype.renderHeadings = function(){
-  var addHeading = document.createElement('th');
-
+  for(var i = 0; i < 12; i++) {
+    var td1 = tr.insertCell();
+    if(i < 11){
+      var time = 7 + i;
+      td1.appendChild(document.createTextNode(time));
+      td1.style.border = "2px solid black";
+    } else {
+      td1.appendChild(document.createTextNode('Totals'));
+      td1.style.border = '2px solid black';
+    }
+  }
+  body.appendChild(table);
 }
 
+//calls the table header function
+createTableHeader();
 
+//Creates a row for a shop that is called
+DonutShop.prototype.addShop = function(){
 
+  var tr = table.insertRow();
+  for (var i = 0; i < 13; i++) {
+    var td = tr.insertCell();
+    if(i === 0){
+      td.appendChild(document.createTextNode(this.shopName));
+      td.style.border = '2px solid black';
+    } else if (i === 12) {
+      td.appendChild(document.createTextNode(this.totalDonuts));
+      td.style.border = '2px solid black';
+    } else {
+      td.appendChild(document.createTextNode(this.eachHour[i - 1]));
+      td.style.border = '2px solid black';
+    }
+  }
+};
 
-Tweet.prototype.render = function(){ // ***** This is another way to list methods ... in prototypal inheritance.
-  var addTweet = document.createElement('p');
-  addTweet.innerHTML = "<b>" + this.userName + "</b>" + ": " + "<i>" + this.text + "</i>?";
-  return addTweet;
-      };
+//Pulls all the elements together into a render function
+DonutShop.prototype.render = function(){
+  this.donutsEachHour();
+  this.totalPerDay();
+  this.addShop();
+};
 
-var main = document.getElementById('content');
-
-var tweet1 = new Tweet('Otis', 'Shama-lama-ding-dong')
-// will render as "Otis: Shama-lama-ding-dong"
-main.appendChild(tweet1.render());
-
-var tweet2 = new Tweet('Otis', 'We\'re going to need a bigger boat');
-main.appendChild(tweet2.render());
-
-//'content' is the id tag on a <section> element
-
-
-//write to storeReport
-
-//write to tableFoot
+downtownShop.render();
+capitolHillShop.render();
+southLakeUnionShop.render();
+wedgewoodShop.render();
+ballardShop.render();
