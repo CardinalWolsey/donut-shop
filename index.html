@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Donut Shop</title>
+
+    <meta charset="UTF-8">
+    <link rel="stylesheet" type="text/css" href="CSS/donutShop-Style.css">
+  </head>
+
+  <body>
+
+    <table>
+      <thead id="tableHeading">
+      </thead>
+
+      <tbody id="tableBody">
+      </tbody>
+
+      <tfoot id="tableFoot">
+      </tfoot>
+    </table>
+
+    <fieldset>
+      <form id="storeForm">
+        <legend>
+          Add new shop:
+        </legend>
+        <p>
+          <label for="name">Location Name: </label>
+          <input type="text" id="name">
+        </p>
+        <p>
+          <label for="minDonuts">Minimum Customers: </label>
+          <input type="text" id="minCustomers">
+        </p>
+        <p>
+          <label for="maxDonuts">Maximum Customers: </label>
+          <input type="text" id="maxCustomers">
+        </p>
+        <p>
+          <label for="avgDonuts">Average Donuts Per Customer: </label>
+          <input type="text" id="avgDonuts">
+        </p>
+
+        <input type="button" value="Add" id="addButton">
+
+      </form>
+    </fieldset>
+
+    <script src="JS/donutShop-script.js">
+    </script>
+
+  </body>
+</html>
