@@ -1,3 +1,21 @@
-* {
-border: 1px dashed red;
+/*color key:
+
+off white: #fcfff5
+light olive: #d1dbbd
+light green: #91aa9d
+light blue: #3e606f
+deep blue: #193441
+
+*/
+
+
+body {
+  font-family: helvetica, arial, verdana;
+  background-color: #3e606f;}
+
+h1 {
+  font-family: helvetica, arial, verdana;
+  color: #193441;
+  font-size: 48px;
 }
+
