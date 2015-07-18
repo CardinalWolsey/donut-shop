@@ -8,14 +8,66 @@ deep blue: #193441
 
 */
 
-
 body {
   font-family: helvetica, arial, verdana;
-  background-color: #3e606f;}
+  background-color: #3e606f;
+}
 
 h1 {
   font-family: helvetica, arial, verdana;
-  color: #193441;
+  color: #fcfff5;
   font-size: 48px;
 }
 
+h2 {
+  color: #d1dbbd;
+  margin-top: 5px;
+  margin-bottom: 10px;
+}
+
+h2:first-letter {
+  font-size: 200%;
+}
+
+#HipsterIpsum {
+  color: #fcfff5;
+  font-family: 'Shadows Into Light', serif;
+  margin-top: 0px;
+}
+
+#HipsterIpsum:first-letter {
+  font-size: 300%;
+
+}
+
+fieldset {
+  background-color: #193441;
+  color: #fcfff5;
+  padding: 5px;
+  margin: 5px;
+}
+
+#rightBox {
+  width: 48%;
+  min-width: 400px;
+  margin: 1%;
+  float: left;
+
+}
+
+#leftBox {
+  width: 48%;
+  min-width: 400px;
+  margin: 1%;
+  float: left;
+}
+
+table {
+  margin-top: 20px;
+
+}
+
+td {
+  border-color: #000000;
+  border-width: 2px;
+}

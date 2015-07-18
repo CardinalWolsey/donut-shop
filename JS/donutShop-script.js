@@ -114,28 +114,23 @@ createStoreForm.addEventListener('click', function() {
 // //**call the table render function
 
 //Finds the body tag in HTML and creates a table
-var body = document.body;
+var body = document.getElementById('tableBody');
 var table = document.createElement('table');
 
 //creates the header for the table
 var createTableHeader = function() {
-  table.style.width = '300px';
-  table.style.border = '5px solid black';
 
   var tr = table.insertRow();
   var td = tr.insertCell();
   td.appendChild(document.createTextNode('Hours:'));
-  td.style.border = '2px solid black';
 
   for(var i = 0; i < 12; i++) {
     var td1 = tr.insertCell();
     if(i < 11){
       var time = 7 + i;
       td1.appendChild(document.createTextNode(time));
-      td1.style.border = "2px solid black";
     } else {
       td1.appendChild(document.createTextNode('Totals'));
-      td1.style.border = '2px solid black';
     }
   }
   body.appendChild(table);
@@ -152,13 +147,10 @@ DonutShop.prototype.addShop = function(){
     var td = tr.insertCell();
     if(i === 0){
       td.appendChild(document.createTextNode(this.shopName));
-      td.style.border = '2px solid black';
     } else if (i === 12) {
       td.appendChild(document.createTextNode(this.totalDonuts));
-      td.style.border = '2px solid black';
     } else {
       td.appendChild(document.createTextNode(this.eachHour[i - 1]));
-      td.style.border = '2px solid black';
     }
   }
 };
