@@ -52,7 +52,6 @@ fieldset {
   min-width: 400px;
   margin: 1%;
   float: left;
-
 }
 
 #leftBox {
@@ -62,12 +61,65 @@ fieldset {
   float: left;
 }
 
-table {
-  margin-top: 20px;
-
+#Donut_Table{
+  background-color: #000000;
 }
 
-td {
+#tableRow{
   border-color: #000000;
-  border-width: 2px;
+  background-color: #d1dbbd;
+}
+
+#tableCell0{
+  background-color: #91aa9d;
+  border-color: #000000;
+}
+
+#tableCell1{
+  background-color: #fcfff5;
+  border-collapse: collapse;
+}
+
+#tableCell2{
+    background-color: #91aa9d;
+}
+
+#tableCell3{
+    background-color: #fcfff5;
+}
+
+#tableCell4{
+    background-color: #91aa9d;
+}
+
+#tableCell5{
+    background-color: #fcfff5;
+}
+
+#tableCell6{
+    background-color: #91aa9d;
+}
+
+#tableCell7{
+    background-color: #fcfff5;
+}
+
+#tableCell8{
+    background-color: #91aa9d;
+}
+
+#tableCell9{
+    background-color: #fcfff5;
+}
+
+#tableCell10{
+    background-color: #91aa9d;
+}
+
+#tableCell11{
+    background-color: #fcfff5;
+}
+
+#tableCell12{
+    background-color: #91aa9d;
 }

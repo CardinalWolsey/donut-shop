@@ -116,6 +116,7 @@ createStoreForm.addEventListener('click', function() {
 //Finds the body tag in HTML and creates a table
 var body = document.getElementById('tableBody');
 var table = document.createElement('table');
+table.id = 'Donut_Table';
 
 //creates the header for the table
 var createTableHeader = function() {
@@ -134,15 +135,24 @@ var createTableHeader = function() {
     }
   }
   body.appendChild(table);
+  td.id = 'tableCell';
+  tr.id = 'tableRow';
 }
 
+
 //calls the table header function
+
 createTableHeader();
+
 
 //Creates a row for a shop that is called
 DonutShop.prototype.addShop = function(){
 
-  var tr = table.insertRow();
+  for (var i = 0; i < 1; i++){
+    var tr = table.insertRow();
+    tr.id = 'tableRow' + i;
+  }
+
   for (var i = 0; i < 13; i++) {
     var td = tr.insertCell();
     if(i === 0){
@@ -152,6 +162,7 @@ DonutShop.prototype.addShop = function(){
     } else {
       td.appendChild(document.createTextNode(this.eachHour[i - 1]));
     }
+    td.id = 'tableCell' + i;
   }
 };
 
