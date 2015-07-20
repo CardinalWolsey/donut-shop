@@ -7,3 +7,4 @@ The faunt I used for the hipster ipsum is called Shadows Into Light.  I got it f
 
 The color scheme is from Adobe Color CC.  It is called neutral blue.
 
+I added the steam roller graphic to my website from here http://codepen.io/khadkamhn/pen/NqBGOW to indicate that the site is still a work in progress.
